@@ -7,7 +7,11 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 import javax.swing.JList;
 import javax.swing.JMenu;
@@ -17,6 +21,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
+
+import domain.Athlete;
+import domain.Athlete.Genre;
 
 public class MainWindow extends JFrame {
 
@@ -30,14 +37,29 @@ public class MainWindow extends JFrame {
 		setSize(640, 480);
 		setLocationRelativeTo(null);
 
-		// Ejercicio 2
-		String[] atletas = new String[50];
-
-		for (int i = 0; i < atletas.length; i++) {
-			atletas[i] = "Atleta " + (i + 1);
+		// Ejercicio 5
+		List<Athlete> atletas = new ArrayList<>();
+		Athlete atleta1 = new Athlete(1, "Atleta" + 1, Genre.MALE, "España", LocalDate.of(2000, 2, 13));
+		Athlete atleta2 = new Athlete(2, "Atleta" + 2, Genre.FEMALE, "Francia", LocalDate.of(2002, 4, 3));
+		Athlete atleta3 = new Athlete(3, "Atleta" + 3, Genre.MALE, "Irlanda", LocalDate.of(1999, 6, 1));
+		Athlete atleta4 = new Athlete(4, "Atleta" + 4, Genre.FEMALE, "Polonia", LocalDate.of(1978, 9, 23));
+		Athlete atleta5 = new Athlete(5, "Atleta" + 5, Genre.MALE, "Ucrania", LocalDate.of(1998, 2, 4));
+		
+		atletas.add(atleta1);
+		atletas.add(atleta2);
+		atletas.add(atleta3);
+		atletas.add(atleta4);
+		atletas.add(atleta5);
+		
+		// Creamos el DefaultListModel de Athlete
+		DefaultListModel<Athlete> modeloAtletas = new DefaultListModel<Athlete>();
+		
+		// Añadimos los atletas al modelo
+		for (Athlete a : atletas) {
+			modeloAtletas.addElement(a);
 		}
 
-		JList<String> listaAtletas = new JList<String>(atletas);
+		JList<Athlete> listaAtletas = new JList<>(modeloAtletas);
 		JScrollPane ScrollPane = new JScrollPane(listaAtletas);
 
 		ScrollPane.setPreferredSize(new Dimension(200, 0));
