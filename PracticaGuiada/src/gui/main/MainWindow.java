@@ -39,11 +39,11 @@ public class MainWindow extends JFrame {
 
 		// Ejercicio 5
 		List<Athlete> atletas = new ArrayList<>();
-		Athlete atleta1 = new Athlete(1, "Atleta" + 1, Genre.MALE, "España", LocalDate.of(2000, 2, 13));
-		Athlete atleta2 = new Athlete(2, "Atleta" + 2, Genre.FEMALE, "Francia", LocalDate.of(2002, 4, 3));
-		Athlete atleta3 = new Athlete(3, "Atleta" + 3, Genre.MALE, "Irlanda", LocalDate.of(1999, 6, 1));
-		Athlete atleta4 = new Athlete(4, "Atleta" + 4, Genre.FEMALE, "Polonia", LocalDate.of(1978, 9, 23));
-		Athlete atleta5 = new Athlete(5, "Atleta" + 5, Genre.MALE, "Ucrania", LocalDate.of(1998, 2, 4));
+		Athlete atleta1 = new Athlete(1, "BOLT, USAIN", Genre.MALE, "España", LocalDate.of(2000, 2, 13));
+		Athlete atleta2 = new Athlete(2, "NADAL, RAFAEL", Genre.MALE, "Francia", LocalDate.of(2002, 4, 3));
+		Athlete atleta3 = new Athlete(3, "LEDECKY, KATIE", Genre.FEMALE, "Irlanda", LocalDate.of(1999, 6, 1));
+		Athlete atleta4 = new Athlete(4, "BILES, SIMONE", Genre.FEMALE, "Polonia", LocalDate.of(1978, 9, 23));
+		Athlete atleta5 = new Athlete(5, "KIPCHOGE, ELIUD", Genre.MALE, "Ucrania", LocalDate.of(1998, 2, 4));
 		
 		atletas.add(atleta1);
 		atletas.add(atleta2);
@@ -60,6 +60,10 @@ public class MainWindow extends JFrame {
 		}
 
 		JList<Athlete> listaAtletas = new JList<>(modeloAtletas);
+		
+		// Ejercicio 6
+		listaAtletas.setCellRenderer(new AthleteListCellRenderer());
+		
 		JScrollPane ScrollPane = new JScrollPane(listaAtletas);
 
 		ScrollPane.setPreferredSize(new Dimension(200, 0));
