@@ -42,6 +42,8 @@ public class AthleteFormPanel extends JPanel {
 	public JRadioButton hombre;
 	public JRadioButton mujer;
 	public JComboBox<String> selectorPais;
+	public JButton botonDatos;
+	public JButton botonHabDes;
 
 	public AthleteFormPanel(List<String> paises) throws ParseException {
 
@@ -105,8 +107,8 @@ public class AthleteFormPanel extends JPanel {
 		panelPais.add(selectorPais);
 
 		JPanel panelBotones = new JPanel(new FlowLayout(FlowLayout.CENTER));
-		JButton botonDatos = new JButton("Obtener Datos");
-		JButton botonHabDes = new JButton("Habilitar/Deshabilitar");
+		botonDatos = new JButton("Obtener Datos");
+		botonHabDes = new JButton("Habilitar/Deshabilitar");
 
 		panelBotones.add(botonDatos);
 		panelBotones.add(botonHabDes);
@@ -237,6 +239,8 @@ public class AthleteFormPanel extends JPanel {
 	    hombre.setEnabled(editable);
 	    mujer.setEnabled(editable);
 	    selectorPais.setEnabled(editable);
+	    botonDatos.setEnabled(editable);
+	    
 	}
 
 	public boolean isEditable() {

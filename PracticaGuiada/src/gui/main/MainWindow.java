@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.text.ParseException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +22,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 import domain.Athlete;
 import domain.Athlete.Genre;
@@ -29,21 +32,21 @@ public class MainWindow extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 
-	public MainWindow() {
+	public MainWindow() throws ParseException {
 
 		// Ejercicio 1
 		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 		setTitle("JJ.OO. París 2024");
-		setSize(640, 480);
+		setSize(600, 350);
 		setLocationRelativeTo(null);
 
 		// Ejercicio 5
 		List<Athlete> atletas = new ArrayList<>();
-		Athlete atleta1 = new Athlete(1, "BOLT, USAIN", Genre.MALE, "España", LocalDate.of(2000, 2, 13));
-		Athlete atleta2 = new Athlete(2, "NADAL, RAFAEL", Genre.MALE, "Francia", LocalDate.of(2002, 4, 3));
-		Athlete atleta3 = new Athlete(3, "LEDECKY, KATIE", Genre.FEMALE, "Irlanda", LocalDate.of(1999, 6, 1));
-		Athlete atleta4 = new Athlete(4, "BILES, SIMONE", Genre.FEMALE, "Polonia", LocalDate.of(1978, 9, 23));
-		Athlete atleta5 = new Athlete(5, "KIPCHOGE, ELIUD", Genre.MALE, "Ucrania", LocalDate.of(1998, 2, 4));
+		Athlete atleta1 = new Athlete(111111, "BOLT, USAIN", Genre.MALE, "España", LocalDate.of(2000, 2, 13));
+		Athlete atleta2 = new Athlete(222222, "NADAL, RAFAEL", Genre.MALE, "Francia", LocalDate.of(2002, 4, 3));
+		Athlete atleta3 = new Athlete(333333, "LEDECKY, KATIE", Genre.FEMALE, "Irlanda", LocalDate.of(1999, 6, 1));
+		Athlete atleta4 = new Athlete(444444, "BILES, SIMONE", Genre.FEMALE, "Polonia", LocalDate.of(1978, 9, 23));
+		Athlete atleta5 = new Athlete(555555, "KIPCHOGE, ELIUD", Genre.MALE, "Ucrania", LocalDate.of(1998, 2, 4));
 		
 		atletas.add(atleta1);
 		atletas.add(atleta2);
@@ -72,6 +75,22 @@ public class MainWindow extends JFrame {
 		JTabbedPane pestañas = new JTabbedPane();
 		JPanel panelDatos = new JPanel();
 		JPanel panelMedallas = new JPanel();
+		
+		// Ejercicio 9
+		List<String> paises = List.of("España", "Francia", "Irlanda", "Polonia", "Ucrania");
+		AthleteFormPanel panelFormulario = new AthleteFormPanel(paises);
+		panelFormulario.setEditable(false);
+		panelDatos.add(panelFormulario);
+		
+		listaAtletas.addListSelectionListener(new ListSelectionListener() {
+			
+			@Override
+			public void valueChanged(ListSelectionEvent e) {
+				Athlete a = listaAtletas.getSelectedValue();
+				panelFormulario.setAthlete(a);
+				
+			}
+		}); 
 
 		pestañas.add(panelDatos, "Datos");
 		pestañas.add(panelMedallas, "Medallas");
